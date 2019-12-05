@@ -1,0 +1,23 @@
+
+10월 10, 2019 17:47:03.38 NEW SESSION
+10월 10, 2019 17:47:03.38 
+10월 10, 2019 17:47:03.38 KLIB_SelfTest return : KLR_OK
+
+10월 17, 2019 15:41:48.20 NEW SESSION
+10월 17, 2019 15:41:48.20 
+10월 17, 2019 15:41:48.20 KLIB_SelfTest return : KLR_OK
+
+11월 14, 2019 17:46:36.99 NEW SESSION
+11월 14, 2019 17:46:36.99 
+11월 14, 2019 17:46:36.99 KLIB_SelfTest return : KLR_OK
+11월 14, 2019 17:48:30.07 
+11월 14, 2019 17:48:30.07 KLIB_SelfTest return : KLR_OK
+
+11월 21, 2019 17:39:44.74 NEW SESSION
+11월 21, 2019 17:39:44.74 
+11월 21, 2019 17:39:44.74 KLIB_SelfTest return : KLR_OK
+
+11월 25, 2019 23:57:45.56 NEW SESSION
+11월 25, 2019 23:57:45.56 [956:272:1125/235745.566:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
+11월 25, 2019 23:57:46.67 [956:272:1125/235746.675:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
+11월 25, 2019 23:57:47.81 [956:272:1125/235747.818:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
