@@ -1,19 +1,17 @@
-INDEX VERSION 1.4+D:\induksoft\2a201612015\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3168302321.index
-4139223232.index
-1306973146.index
-3321704578.index
-787882343.index
-3950777497.index
-550161937.index
-3057445884.index
+INDEX VERSION 1.4+C:\Users\user\JspInUniv\2a201612015\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+780164101.index
+2355992478.index
+653353807.index
+183663326.index
+1544259324.index
+1601024770.index
+1150578381.index
+2938336789.index
+4170318950.index
+171426831.index
+789531699.index
+2593339685.index
 33237968.index
-617256709.index
-1705341393.index
-170826525.index
-2220051595.index
-2496824642.index
-764729786.index
-1973142876.index
-940085212.index
-835605420.index
+360235841.index
+1429043736.index
+4141567575.index

@@ -68,6 +68,7 @@ public class ProductController extends HttpServlet {
 		System.out.println("URN: " + urn);
 		
 		HttpSession session = request.getSession();
+		ProductDAOImpl dao = new ProductDAOImpl();
 
 /////////// Product-register.do
 		if (urn.equals("product-register.do")) {
@@ -93,8 +94,6 @@ public class ProductController extends HttpServlet {
 				
 				request.setAttribute(partName, partValue);	// Product Image
 			}	
-	
-			ProductDAOImpl dao = new ProductDAOImpl();
 	
 			Product newProduct = new Product();
 			newProduct.setProductId(request.getParameter("productId"));
@@ -124,9 +123,6 @@ public class ProductController extends HttpServlet {
 				return;
 			}
 
-			//ProductRepository dao = ProductRepository.getInstance();
-
-			ProductDAOImpl dao = new ProductDAOImpl();
 			Product product = dao.readList(id);
 			if (product == null) {
 				request.setAttribute("msg", "상품 추가 에러");
@@ -143,13 +139,14 @@ public class ProductController extends HttpServlet {
 				}
 			}
 			
-			// When is empty, Create new ArrayList instance.
+			// When cartList is empty, Create new ArrayList instance.
 			ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartlist");
 			if (list == null) { 
 				list = new ArrayList<Product>();
 				session.setAttribute("cartlist", list);
 			}
 
+			// When selected product is duplication on cartlist, increase quantity in product on cartlist. 
 			int cnt = 0;
 			Product goodsQnt = new Product();
 			for (int i = 0; i < list.size(); i++) {
@@ -160,7 +157,8 @@ public class ProductController extends HttpServlet {
 					goodsQnt.setQuantity(orderQuantity);
 				}
 			}
-
+			
+			// When selected product is not exist in cartlist, add product to cartlist.
 			if (cnt == 0) { 
 				goods.setQuantity(1);
 				list.add(goods);
@@ -177,9 +175,6 @@ public class ProductController extends HttpServlet {
 				return;
 			}
 
-			//ProductRepository dao = ProductRepository.getInstance();
-			
-			ProductDAOImpl dao = new ProductDAOImpl();
 			Product product = dao.readList(id);
 			if (product == null) {
 				request.setAttribute("msg", "상품 삭제 에러");
@@ -215,7 +210,7 @@ public class ProductController extends HttpServlet {
 		} else if (urn.equals("product-list.do")) {
 			
 			ArrayList<Product> modelList = new ArrayList<Product>();
-			ProductDAOImpl dao = new ProductDAOImpl();
+
 			if ((modelList = dao.selectAll()) != null) {
 				request.setAttribute("productList", modelList);
 			}
@@ -225,7 +220,7 @@ public class ProductController extends HttpServlet {
 		} else if (urn.equals("product-remove.do")) {
 			
 			String id = request.getParameter("id");
-			ProductDAOImpl dao = new ProductDAOImpl();
+
 			if (id == null || id.trim().equals("")) {
 				response.sendRedirect("cart.jsp");
 				return;
@@ -236,7 +231,7 @@ public class ProductController extends HttpServlet {
 /////////// product-edit.do
 		} else if (urn.equals("product-edit.do")) {
 			String id = request.getParameter("id");
-			ProductDAOImpl dao = new ProductDAOImpl();
+
 			Product product = dao.readList(id);
 			
 			request.setAttribute("product", product);
@@ -285,7 +280,6 @@ public class ProductController extends HttpServlet {
 			product.setFilename(oldFilename);
 			product.setQuantity(1);
 			
-			ProductDAOImpl dao = new ProductDAOImpl();
 			dao.update(product);
 			
 			response.sendRedirect("product-list.do");
@@ -294,7 +288,7 @@ public class ProductController extends HttpServlet {
 		} else if (urn.equals("product-detail.do")) {
 			
 			String id = request.getParameter("id");
-			ProductDAOImpl dao = new ProductDAOImpl();
+
 			Product product = dao.readList(id);
 			
 			request.setAttribute("product", product);

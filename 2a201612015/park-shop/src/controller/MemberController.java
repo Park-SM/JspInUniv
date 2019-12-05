@@ -136,6 +136,7 @@ public class MemberController extends HttpServlet {
 			
 			// Process and pass the values ​​of the request object.
 			request.getRequestDispatcher("confirmation.jsp").forward(request,  response);
+			
 		} else if (urn.equals("member-list.do")) {
 			
 			MemberDAOImpl dao = new MemberDAOImpl();
@@ -143,6 +144,7 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("memberlist", modelList);
 			}
 			request.getRequestDispatcher("member-list.jsp").forward(request, response);
+			
 		} else if (urn.equals("member-info")) {
 			
 			String id = request.getParameter("id");
@@ -162,7 +164,6 @@ public class MemberController extends HttpServlet {
 			// Process and pass the values ​​of the request object.
 			request.getRequestDispatcher("member-info.jsp").forward(request,  response);
 			
-			
 		} else if (urn.equals("member-delete.do")) {
 			
 			String id = request.getParameter("id");
@@ -176,7 +177,6 @@ public class MemberController extends HttpServlet {
 			// Process and pass the values ​​of the request object.
 			request.getRequestDispatcher("login.jsp").forward(request,  response);
 			
-			
 		} else if (urn.equals("member-edit.do")) {
 			
 			System.out.println("id: " + request.getParameter("id"));
@@ -189,7 +189,6 @@ public class MemberController extends HttpServlet {
 	
 			// Process and pass the values ​​of the request object.
 			request.getRequestDispatcher("index.jsp").forward(request,  response);
-			
 			
 		}
 			
