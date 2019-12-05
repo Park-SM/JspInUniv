@@ -1,3 +1,3 @@
 # JspInUniv
 * Project in Univ.
-* Write working tree in wiki.
+* Writing working tree in wiki.
