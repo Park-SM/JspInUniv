@@ -111,7 +111,7 @@
                   </children>
                 </children>
               </children>
-              <children xsi:type="basic:PartStack" xmi:id="_RPK0URc6EeqkQuJtaM68Sw" elementId="bottomRight" containerData="2824" selectedElement="_RPK0WRc6EeqkQuJtaM68Sw">
+              <children xsi:type="basic:PartStack" xmi:id="_RPK0URc6EeqkQuJtaM68Sw" elementId="bottomRight" containerData="2824" selectedElement="_RPK0VBc6EeqkQuJtaM68Sw">
                 <tags>Data Management</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_RPK0Uhc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.views.AllMarkersView" ref="_RPK2ABc6EeqkQuJtaM68Sw" closeable="true">
                   <tags>View</tags>
@@ -446,7 +446,7 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_RPK13Bc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.editorss" selectedElement="_RPK13Rc6EeqkQuJtaM68Sw">
-      <children xsi:type="basic:PartStack" xmi:id="_RPK13Rc6EeqkQuJtaM68Sw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Ks1zMBhMEeqUEYkjgjcIjw">
+      <children xsi:type="basic:PartStack" xmi:id="_RPK13Rc6EeqkQuJtaM68Sw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_LIRyABhMEeqUEYkjgjcIjw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
@@ -473,18 +473,18 @@
           </menus>
         </children>
         <children xsi:type="basic:Part" xmi:id="_Ks1zMBhMEeqUEYkjgjcIjw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="style.css" iconURI="platform:/plugin/org.eclipse.wst.css.ui/icons/full/obj16/sourceEditor.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.wst.css.core.csssource.source&quot; name=&quot;style.css&quot; partName=&quot;style.css&quot; title=&quot;style.css&quot; tooltip=&quot;park-shop/WebContent/css/style.css&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/park-shop/WebContent/css/style.css&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;71173&quot; selectionTopPixel=&quot;36126&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.wst.css.core.csssource.source&quot; name=&quot;style.css&quot; partName=&quot;style.css&quot; title=&quot;style.css&quot; tooltip=&quot;park-shop/WebContent/css/style.css&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/park-shop/WebContent/css/style.css&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;71139&quot; selectionTopPixel=&quot;36345&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.wst.css.core.csssource.source</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_LIRyABhMEeqUEYkjgjcIjw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="owl.carousel.min.css" iconURI="platform:/plugin/org.eclipse.wst.css.ui/icons/full/obj16/sourceEditor.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.wst.css.core.csssource.source&quot; name=&quot;owl.carousel.min.css&quot; partName=&quot;owl.carousel.min.css&quot; title=&quot;owl.carousel.min.css&quot; tooltip=&quot;park-shop/WebContent/css/owl.carousel.min.css&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/park-shop/WebContent/css/owl.carousel.min.css&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1841&quot; selectionTopPixel=&quot;1125&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.wst.css.core.csssource.source</tags>
           <tags>removeOnHide</tags>
           <tags>active</tags>
           <tags>activeOnClose</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_LIRyABhMEeqUEYkjgjcIjw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="owl.carousel.min.css" iconURI="platform:/plugin/org.eclipse.wst.css.ui/icons/full/obj16/sourceEditor.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.wst.css.core.csssource.source&quot; name=&quot;owl.carousel.min.css&quot; partName=&quot;owl.carousel.min.css&quot; title=&quot;owl.carousel.min.css&quot; tooltip=&quot;park-shop/WebContent/css/owl.carousel.min.css&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/park-shop/WebContent/css/owl.carousel.min.css&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1984&quot; selectionTopPixel=&quot;1120&quot;/>&#xD;&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.wst.css.core.csssource.source</tags>
-          <tags>removeOnHide</tags>
         </children>
       </children>
     </sharedElements>
@@ -552,7 +552,6 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:Server</tags>
-      <tags>highlighted</tags>
       <menus xmi:id="_RPK2Bxc6EeqkQuJtaM68Sw" elementId="org.eclipse.wst.server.ui.ServersView">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -561,7 +560,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.wst.server.ui.ServersView</tags>
       </menus>
-      <toolbar xmi:id="_RPK2NRc6EeqkQuJtaM68Sw" elementId="org.eclipse.wst.server.ui.ServersView" visible="false"/>
+      <toolbar xmi:id="_RPK2NRc6EeqkQuJtaM68Sw" elementId="org.eclipse.wst.server.ui.ServersView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_RPK2PRc6EeqkQuJtaM68Sw" elementId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Data Source Explorer" iconURI="platform:/plugin/org.eclipse.datatools.connectivity.ui.dse/icons/full/cview16/enterprise_explorer.gif" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView"/>
@@ -616,7 +615,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.debug.ui.ProcessConsoleType.#ContextMenu</tags>
       </menus>
-      <toolbar xmi:id="_RPK2kBc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.console.ConsoleView"/>
+      <toolbar xmi:id="_RPK2kBc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_RPK2nxc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.views.BookmarkView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Bookmarks" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/bkmrk_nav.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.BookmarksView"/>
@@ -774,7 +773,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_RPK2wRc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_1-i_MBhLEeqUEYkjgjcIjw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_RPMrqhc6EeqkQuJtaM68Sw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_133_EBwzEeqDQpKt9SdLNw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_RPMrqhc6EeqkQuJtaM68Sw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_RPK2zhc6EeqkQuJtaM68Sw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -818,7 +817,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_RPK3Mxc6EeqkQuJtaM68Sw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_1-k0YhhLEeqUEYkjgjcIjw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_RPMrTxc6EeqkQuJtaM68Sw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_135NNhwzEeqDQpKt9SdLNw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_RPMrTxc6EeqkQuJtaM68Sw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_RPK3Phc6EeqkQuJtaM68Sw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
