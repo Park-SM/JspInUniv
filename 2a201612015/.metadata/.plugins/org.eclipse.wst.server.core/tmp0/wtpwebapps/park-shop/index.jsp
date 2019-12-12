@@ -177,9 +177,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                  <div class="park-sm-task">
                     <div class="product_list_slider owl-carousel">
                         <div class="single_product_list_slider">
-                            <div class="row align-items-center justify-content-between">
+                            <div class="row align-items-center justify-content-between" style="height:750px;">
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
                                         <img src="img/product/product_1.png" alt="">
@@ -346,6 +347,7 @@
                                 </div>
                             </div>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>

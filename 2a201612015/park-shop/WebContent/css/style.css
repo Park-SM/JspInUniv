@@ -2436,7 +2436,7 @@ ul {
 
 /* line 11, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */
 .banner_part .single_banner_slider .banner_text .banner_text_iner {
-  margin-top:130px;
+  margin-top:150px;
   vertical-align: middle;
 }
 
@@ -2532,7 +2532,7 @@ ul {
 .banner_part .single_banner_slider .banner_img {
   position: absolute;
   right: 0;
-  top: 20%;
+  top: 25%;
 }
 
 /* line 72, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */

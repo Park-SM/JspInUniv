@@ -21,3 +21,14 @@
 11월 25, 2019 23:57:45.56 [956:272:1125/235745.566:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
 11월 25, 2019 23:57:46.67 [956:272:1125/235746.675:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
 11월 25, 2019 23:57:47.81 [956:272:1125/235747.818:ERROR:page_load_metrics_update_dispatcher.cc(174)] Invalid first_paint 0.209 s for first_contentful_paint 0.205 s
+
+12월 12, 2019 14:10:34.20 NEW SESSION
+12월 12, 2019 14:10:34.20 [8100:11076:1212/141034.191:ERROR:cache_util_win.cc(21)] Unable to move the cache: 액세스가 거부되었습니다. (0x5)
+12월 12, 2019 14:10:34.20 [8100:11076:1212/141034.199:ERROR:cache_util.cc(141)] Unable to move cache folder C:\Users\user\AppData\Local\Google\Chrome\User Data\ShaderCache\GPUCache to C:\Users\user\AppData\Local\Google\Chrome\User Data\ShaderCache\old_GPUCache_000
+12월 12, 2019 14:10:34.20 [8100:11076:1212/141034.199:ERROR:disk_cache.cc(178)] Unable to create cache
+12월 12, 2019 14:10:34.20 [8100:11076:1212/141034.199:ERROR:shader_disk_cache.cc(605)] Shader Cache Creation failed: -2
+12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:cache_util_win.cc(21)] Unable to move the cache: 액세스가 거부되었습니다. (0x5)
+12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:cache_util.cc(141)] Unable to move cache folder C:\Users\user\AppData\Local\Google\Chrome\User Data\ShaderCache\GPUCache to C:\Users\user\AppData\Local\Google\Chrome\User Data\ShaderCache\old_GPUCache_000
+12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:disk_cache.cc(178)] Unable to create cache
+12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:shader_disk_cache.cc(605)] Shader Cache Creation failed: -2
+12월 12, 2019 14:10:34.85 기존 브라우저 세션에서 여는 중입니다.

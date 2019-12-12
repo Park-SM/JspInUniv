@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="outer"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="outer"/>
+			<item value="margin-right"/>
+			<item value="width"/>
+			<item value="clone"/>
+			<item value="cloned"/>
+			<item value="owl-stage"/>
+			<item value="widht"/>
+			<item value="owl-item"/>
+			<item value="awesome"/>
+			<item value="&gt;"/>
+			<item value="&lt;div class=&quot;owl-item&quot; style=&quot;width: 930px; margin-right: 30px;&quot;&gt;"/>
 			<item value="setParameter"/>
 			<item value="Parameter"/>
 			<item value="exception"/>
 			<item value="Member"/>
-			<item value="HttpSession"/>
-			<item value="cart"/>
-			<item value="index"/>
-			<item value="신"/>
-			<item value="신구제품"/>
-			<item value="conn"/>
-			<item value="stmt"/>
-			<item value="test sample"/>
-			<item value="sample"/>
-			<item value="sample button"/>
-			<item value="tracking"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Product"/>
