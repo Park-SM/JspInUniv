@@ -31,10 +31,10 @@
 				<p><b>재고 수</b> : <%=product.getUnitsInStock()%>
 				<h4><%=product.getUnitPrice()%>원</h4>
 				<p><a href="cart-add.do?id=<%=product.getProductId() %>" onclick='return confirm("해당 상품을 추가하시겠습니까?");' class="btn btn-info"> 상품 주문 &raquo;</a>
-				<a href="./product-edit.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 수정 &raquo;</a>
 				<%
-					if (((String)session.getAttribute("login_id")).equals("admin")) {
+					if (session.getAttribute("login_id") != null && ((String)session.getAttribute("login_id")).equals("admin")) {
 				%>
+					<a href="./product-edit.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 수정 &raquo;</a>
 						<a href="./product-remove.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 삭제 &raquo;</a>
 				<%
 					}
