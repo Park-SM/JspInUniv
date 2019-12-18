@@ -23,6 +23,7 @@
 			</div>
 			<div class="col-md-7">
 				<form name="editProduct" action="./product-update.do" class="form-horizontal" method="post" enctype="multipart/form-data">
+					<input type="hidden" id="pid" name="pid" value="<%=product.getPid() %>">
 					<div class="form-group row">
 						<label class="col-sm-2">상품 코드</label>
 						<div class="col-sm-3">

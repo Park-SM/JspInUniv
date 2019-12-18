@@ -6,6 +6,7 @@ public class Product implements Serializable {
 
 	private static final long serialVersionUID = -4274700572038677000L;
 
+	private int pid;
 	private String productId;
 	private String pname;
 	private Integer unitPrice;
@@ -27,8 +28,9 @@ public class Product implements Serializable {
 		super();
 	}
 
-	public Product(String productId, String pname, int unitPrice, String description, String manufacturer, String category, long unitsInStock
+	public Product(int pid, String productId, String pname, int unitPrice, String description, String manufacturer, String category, long unitsInStock
 			, String condition, int quantity, String filename) {
+		this.pid = pid;
 		this.productId = productId;
 		this.pname = pname;
 		this.unitPrice = unitPrice;
@@ -45,6 +47,16 @@ public class Product implements Serializable {
 		this.productId = productId;
 		this.pname = pname;
 		this.unitPrice = unitPrice;
+	}
+	
+	
+
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
 	}
 
 	public String getProductId() {

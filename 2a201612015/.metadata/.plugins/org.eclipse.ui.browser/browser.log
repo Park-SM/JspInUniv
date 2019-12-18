@@ -32,3 +32,6 @@
 12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:disk_cache.cc(178)] Unable to create cache
 12월 12, 2019 14:10:34.49 [8100:11076:1212/141034.497:ERROR:shader_disk_cache.cc(605)] Shader Cache Creation failed: -2
 12월 12, 2019 14:10:34.85 기존 브라우저 세션에서 여는 중입니다.
+
+12월 19, 2019 04:52:46.31 NEW SESSION
+12월 19, 2019 04:52:46.31 [11356:7396:1219/045246.305:ERROR:mcs_client.cc(758)] Received close command, resetting connection.

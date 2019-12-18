@@ -38,7 +38,7 @@
                                         </c:if>
                                         
                                          <c:choose>
-				                            <c:when test="${ sessionScope.login_id == 'admin' }" >
+				                            <c:when test="${ sessionScope.login_rank == 'admin' }" >
 				                            	<a class="dropdown-item" href="product-register.jsp">product register</a>
 				                            </c:when>
 				                        </c:choose>
@@ -73,7 +73,7 @@
 	                            	<a href="login.jsp"><i class="ti-heart-broken"></i></a>
 	                            </c:when>
 	                            <c:otherwise>
-	                            	<a href='confirm-pw.jsp?id=${ sessionScope.login_id }'><i class="ti-user"></i></button>
+	                            	<a href='confirm-pw.jsp?id=${ sessionScope.login_rank }'><i class="ti-user"></i></button>
 	                            	<a href="logout.jsp"><i class="ti-arrow-right"></i></a>
 	                            </c:otherwise>
                             </c:choose>
@@ -110,15 +110,6 @@
                         </div>
                     </nav>
                 </div>
-            </div>
-        </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
             </div>
         </div>
     </header>

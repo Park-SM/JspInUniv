@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -106,7 +108,10 @@ public class MemberController extends HttpServlet {
 			String email = request.getParameter("email");
 			String country = request.getParameter("country");
 			
-			Member m = new Member(id, pw, name, phone, email, country);
+			Date now = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Member m = new Member(id, pw, name, phone, email, country, format.format(now), "0");
 			
 			// Create DAO instance.
 			MemberDAOImpl dao = new MemberDAOImpl();
@@ -129,18 +134,28 @@ public class MemberController extends HttpServlet {
 			// Create DAO instance.
 			MemberDAOImpl dao = new MemberDAOImpl();
 			
-			if (dao.readList(id) != null && dao.readList(id).getPw().equals(pw)) {
+			Member retMem;
+			if ((retMem = dao.readList(id)) != null && retMem.getPw().equals(pw)) {
 				session.setAttribute("login", "success");
-				session.setAttribute("login_id", id);
+				session.setAttribute("login_id", retMem.getId());
+				session.setAttribute("login_rank", retMem.getRank());
 			} else session.setAttribute("login", "fail");
 			
 			// Process and pass the values ​​of the request object.
 			request.getRequestDispatcher("confirmation.jsp").forward(request,  response);
 			
 		} else if (urn.equals("member-list.do")) {
+			String sortMethod = "0";
+			if (request.getParameter("sortMethod") != null) {
+				sortMethod = request.getParameter("sortMethod");
+			}
+			String search = "";
+			if (request.getParameter("search") != null) {
+				search = request.getParameter("search");
+			}
 			
 			MemberDAOImpl dao = new MemberDAOImpl();
-			if ((modelList = dao.selectAll()) != null) {
+			if ((modelList = dao.selectAll(sortMethod, search)) != null) {
 				request.setAttribute("memberlist", modelList);
 			}
 			request.getRequestDispatcher("member-list.jsp").forward(request, response);
@@ -182,7 +197,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("id: " + request.getParameter("id"));
 			
 			Member model = new Member(request.getParameter("id"), request.getParameter("pw"), request.getParameter("name"),
-					request.getParameter("phone"), request.getParameter("email"), request.getParameter("country"));
+					request.getParameter("phone"), request.getParameter("email"), request.getParameter("country"), null, "0");
 			
 			// Create DAO instance.
 			new MemberDAOImpl().update(model);

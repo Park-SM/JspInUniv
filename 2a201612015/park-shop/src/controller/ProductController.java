@@ -130,7 +130,7 @@ public class ProductController extends HttpServlet {
 				return;
 			}
 
-			ArrayList<Product> goodsList = dao.selectAll();
+			ArrayList<Product> goodsList = dao.selectAll("0", "");
 			Product goods = new Product();
 			for (int i = 0; i < goodsList.size(); i++) {
 				goods = goodsList.get(i);
@@ -208,11 +208,21 @@ public class ProductController extends HttpServlet {
 			
 /////////// product-list.do
 		} else if (urn.equals("product-list.do")) {
+			String sortMethod = "0";
+			if (request.getParameter("sortMethod") != null) {
+				sortMethod = request.getParameter("sortMethod");
+			}
+			String search = "";
+			if (request.getParameter("search") != null) {
+				search = request.getParameter("search");
+			}
 			
 			ArrayList<Product> modelList = new ArrayList<Product>();
-
-			if ((modelList = dao.selectAll()) != null) {
+			System.out.println("asdassaasdasd: " + search);
+			if ((modelList = dao.selectAll(sortMethod, search)) != null) {
 				request.setAttribute("productList", modelList);
+				request.setAttribute("sortMethod", sortMethod);
+				request.setAttribute("search", search);
 			}
 			request.getRequestDispatcher("product-list-view.jsp").forward(request, response);
 		
@@ -230,6 +240,7 @@ public class ProductController extends HttpServlet {
 
 /////////// product-edit.do
 		} else if (urn.equals("product-edit.do")) {
+			
 			String id = request.getParameter("id");
 
 			Product product = dao.readList(id);
@@ -269,6 +280,7 @@ public class ProductController extends HttpServlet {
 			if (!newFilename.equals("") && !oldFilename.equals(newFilename)) oldFilename = newFilename;
 			
 			Product product = new Product();
+			product.setPid(Integer.parseInt(request.getParameter("pid")));
 			product.setProductId(request.getParameter("productId"));
 			product.setPname(request.getParameter("name"));
 			product.setUnitPrice(Integer.parseInt(request.getParameter("unitPrice")));

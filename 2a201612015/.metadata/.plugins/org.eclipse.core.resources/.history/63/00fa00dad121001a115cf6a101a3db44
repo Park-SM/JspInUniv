@@ -1,0 +1,322 @@
+package controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import domain.Product;
+import repository.MemberDAOImpl;
+import repository.ProductDAOImpl;
+import repository.ProductRepository;
+
+/**
+ * Servlet implementation class ProductController
+ */
+@WebServlet({ "/ProductController", "/product-register.do", "/cart-add.do", "/cart-remove.do", "/cart-del.do", "/product-list.do",
+			  "/product-remove.do", "/product-edit.do", "/product-update.do", "/product-detail.do"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize= 1024 * 1024 * 30, maxRequestSize = 1024 * 1024 * 50)
+public class ProductController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+    private static final String SAVE_DIR = "a-upload";
+    private String partName = null;	// Name of part in Multipart.
+    private String partValue = null;	// value of part
+    
+    private String getFileName(Part part) {
+    	String contentDisp = part.getHeader("content-disposition");
+    	//System.out.println(contentDisp);
+    	String[] items = contentDisp.split(";");
+    	
+    	for (String s : items) {
+    		if (s.trim().startsWith("filename")) {
+    			return s.substring(s.indexOf("=") + 2, s.length() - 1);
+    		}
+    	}
+    	return "";
+    }
+    
+    protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+    	
+		request.setCharacterEncoding("UTF-8");
+		
+		
+		// Get uri: "/park-shop/product-****.do"
+		String uri = request.getRequestURI();
+		// last index of '/' on uri
+		int index = uri.lastIndexOf("/");
+		// Get urn from uri
+		String urn = uri.substring(index + 1);
+		System.out.println("URN: " + urn);
+		
+		HttpSession session = request.getSession();
+		ProductDAOImpl dao = new ProductDAOImpl();
+
+/////////// Product-register.do
+		if (urn.equals("product-register.do")) {
+		
+			String appPath = request.getServletContext().getRealPath("");
+			// When using this way:String savePath = "C:\\upload...";. but absolute path is often excuse error. its solution is that to using appPath.  
+			String savePath = appPath + File.separator + SAVE_DIR;
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists()) fileSaveDir.mkdir();
+			
+			Collection<Part> parts = request.getParts();
+			for (Part part : parts) {
+				partName = part.getName();		// Get name of parameter
+				if (part.getContentType() != null) {
+					// Processing end of part.
+					partValue = getFileName(part);	// Get value from instance of part. the value is file name.
+					if (partValue != null && !partValue.isEmpty()) {
+						part.write(savePath + File.separator + partValue);	// This method is to upload.
+					}
+				} else {
+					partValue = request.getParameter(partName);
+				}
+				
+				request.setAttribute(partName, partValue);	// Product Image
+			}	
+	
+			Product newProduct = new Product();
+			newProduct.setProductId(request.getParameter("productId"));
+			newProduct.setPname(request.getParameter("name"));
+			newProduct.setUnitPrice(Integer.parseInt(request.getParameter("unitPrice")));
+			newProduct.setDescription(request.getParameter("description"));
+			newProduct.setManufacturer(request.getParameter("manufacturer"));
+			newProduct.setCategory(request.getParameter("category"));
+			newProduct.setUnitsInStock(Long.parseLong(request.getParameter("unitsInStock")));
+			newProduct.setCondition(request.getParameter("condition"));
+			newProduct.setQuantity(1);
+			newProduct.setFilename((String) request.getAttribute("productImage"));
+	
+			if (dao.create(newProduct) > 0)
+				response.sendRedirect("product-list.do");
+			else {
+				request.setAttribute("msg", "상품 등록 에러");
+				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
+			}
+		
+/////////// Cart-add.do
+		} else if (urn.equals("cart-add.do")) {
+			
+			String id = request.getParameter("id");
+			if (id == null || id.trim().equals("")) {
+				response.sendRedirect("products.jsp");
+				return;
+			}
+
+			Product product = dao.readList(id);
+			if (product == null) {
+				request.setAttribute("msg", "상품 추가 에러");
+				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
+				return;
+			}
+
+			ArrayList<Product> goodsList = dao.selectAll("0");
+			Product goods = new Product();
+			for (int i = 0; i < goodsList.size(); i++) {
+				goods = goodsList.get(i);
+				if (goods.getProductId().equals(id)) {
+					break;
+				}
+			}
+			
+			// When cartList is empty, Create new ArrayList instance.
+			ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartlist");
+			if (list == null) { 
+				list = new ArrayList<Product>();
+				session.setAttribute("cartlist", list);
+			}
+
+			// When selected product is duplication on cartlist, increase quantity in product on cartlist. 
+			int cnt = 0;
+			Product goodsQnt = new Product();
+			for (int i = 0; i < list.size(); i++) {
+				goodsQnt = list.get(i);
+				if (goodsQnt.getProductId().equals(id)) {
+					cnt++;
+					int orderQuantity = goodsQnt.getQuantity() + 1;
+					goodsQnt.setQuantity(orderQuantity);
+				}
+			}
+			
+			// When selected product is not exist in cartlist, add product to cartlist.
+			if (cnt == 0) { 
+				goods.setQuantity(1);
+				list.add(goods);
+			}
+
+			response.sendRedirect("product-detail.do?id=" + id);
+			
+/////////// Cart-remove.do			
+		} else if (urn.equals("cart-remove.do")) {
+			
+			String id = request.getParameter("id");
+			if (id == null || id.trim().equals("")) {
+				response.sendRedirect("products.jsp");
+				return;
+			}
+
+			Product product = dao.readList(id);
+			if (product == null) {
+				request.setAttribute("msg", "상품 삭제 에러");
+				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
+				return;
+			}
+
+			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
+			Product goodsQnt = new Product();
+			for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
+				goodsQnt = cartList.get(i);
+				if (goodsQnt.getProductId().equals(id)) {
+					cartList.remove(goodsQnt);
+				}
+			}
+
+			response.sendRedirect("cart.jsp");
+			
+/////////// Cart-del.do			
+		} else if (urn.equals("cart-del.do")) {
+			
+			String id = request.getParameter("cartId");
+			if (id == null || id.trim().equals("")) {
+				response.sendRedirect("cart.jsp");
+				return;
+			}
+
+			//session.invalidate();
+			session.removeAttribute("cartlist");
+			response.sendRedirect("cart.jsp");
+			
+/////////// product-list.do
+		} else if (urn.equals("product-list.do")) {
+			String sortMethod = "0";
+			if (request.getParameter("sortMethod") != null) {
+				sortMethod = request.getParameter("sortMethod");
+			}
+			
+			ArrayList<Product> modelList = new ArrayList<Product>();
+
+			if ((modelList = dao.selectAll(sortMethod)) != null) {
+				request.setAttribute("productList", modelList);
+				request.setAttribute("sortMethod", sortMethod);
+			}
+			request.getRequestDispatcher("product-list-view.jsp").forward(request, response);
+		
+/////////// product-remove.do	
+		} else if (urn.equals("product-remove.do")) {
+			
+			String id = request.getParameter("id");
+
+			if (id == null || id.trim().equals("")) {
+				response.sendRedirect("cart.jsp");
+				return;
+			}
+			dao.delete(id);
+			response.sendRedirect("product-list.do");
+
+/////////// product-edit.do
+		} else if (urn.equals("product-edit.do")) {
+			
+			String id = request.getParameter("id");
+
+			Product product = dao.readList(id);
+			
+			request.setAttribute("product", product);
+			
+			request.getRequestDispatcher("product-edit.jsp").forward(request, response);
+			
+/////////// product-update.do
+		} else if (urn.equals("product-update.do")) {
+			
+			String appPath = request.getServletContext().getRealPath("");
+			
+			// Using this way:String savePath = "C:\\upload...";. but absolute path is often excuse error. its solution is that to using appPath.  
+			String savePath = appPath + File.separator + SAVE_DIR;
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists()) fileSaveDir.mkdir();
+			
+			Collection<Part> parts = request.getParts();
+			for (Part part : parts) {
+				partName = part.getName();		// Get name of parameter
+				if (part.getContentType() != null) {
+					// Processing end of part.
+					partValue = getFileName(part);	// Get value from instance of part. the value is file name.
+					if (partValue != null && !partValue.isEmpty()) {
+						part.write(savePath + File.separator + partValue);	// This method is to upload.
+					}
+				} else {
+					partValue = request.getParameter(partName);
+				}
+				
+				request.setAttribute(partName, partValue);	// Product Image
+			}
+			
+			String oldFilename = request.getParameter("oldFilename");		
+			String newFilename = (String) request.getAttribute("filename");
+			if (!newFilename.equals("") && !oldFilename.equals(newFilename)) oldFilename = newFilename;
+			
+			Product product = new Product();
+			product.setProductId(request.getParameter("productId"));
+			product.setPname(request.getParameter("name"));
+			product.setUnitPrice(Integer.parseInt(request.getParameter("unitPrice")));
+			product.setDescription(request.getParameter("description"));
+			product.setManufacturer(request.getParameter("manufacturer"));
+			product.setCategory(request.getParameter("category"));
+			product.setUnitsInStock(Long.parseLong(request.getParameter("unitsInStock")));
+			product.setCondition(request.getParameter("condition"));
+			product.setFilename(oldFilename);
+			product.setQuantity(1);
+			
+			dao.update(product);
+			
+			response.sendRedirect("product-list.do");
+			
+/////////// product-detail.do
+		} else if (urn.equals("product-detail.do")) {
+			
+			String id = request.getParameter("id");
+
+			Product product = dao.readList(id);
+			
+			request.setAttribute("product", product);
+			
+			request.getRequestDispatcher("product-detail-view.jsp").forward(request, response);
+		}
+}
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		process(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		process(request, response);
+	}
+
+}

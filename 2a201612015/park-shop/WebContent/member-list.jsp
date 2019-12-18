@@ -27,6 +27,11 @@
 	<link rel="stylesheet" href="css/slick.css">
 	<!-- style CSS -->
 	<link rel="stylesheet" href="css/style.css">
+	<script>
+		function sortBy() {
+			document.sortForm.submit();
+		}
+	</script>
 </head>
 
 <body>
@@ -50,6 +55,42 @@
 		</div>
 	</section>
 	<!-- breadcrumb start-->
+		<div class="row">
+		   <div class="col-lg-8" style="margin-left:auto; margin-right:auto; margin-top:10px;">
+		     <form name="sortForm" method="post" action="member-list.do">
+		       <div class="product_top_bar d-flex justify-content-between align-items-center">
+		           <div class="single_product_menu">
+		               <p><span>10000 </span> Prodict Found</p>
+		           </div>
+		           <div class="single_product_menu d-flex">
+		               <h5>short by : </h5>
+		               <select id="sortMethod" name="sortMethod" onchange="sortBy();">
+		               <%
+			               	String[] items = {"name", "ID"};
+			               	String sortMethod = request.getParameter("sortMethod");
+			               	String selected = "";
+			               	for (int i = 1; i <= 2; i++) {
+			               		if (i == 1) selected = "data-display='Select'";
+			               		else selected = "";
+		               %>
+		                   <option value="<%=i %>" <%=selected %>><%=items[i - 1] %></option>
+		               <%
+		               		}
+		               %>
+		               </select>
+		           </div>
+		           <div class="single_product_menu d-flex">
+		               <div class="input-group">
+		                   <input type="text" id="search" name="search" value="${ requestScope.search }" class="form-control" placeholder="search">
+		                    <div class="input-group-prepend">
+		                        <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		      </form>
+		    </div>
+		</div>
 
 	<!-- Start Align Area -->
 	<div class="whole-wrap">
@@ -59,19 +100,28 @@
 					<div class="progress-table">
 						<div class="table-head">
 							<div class="serial">아이디</div>
-							<div class="country">회사명</div>
+							<div class="visit">회사명</div>
 							<div class="visit">전화번호</div>
-							<div class="percentage">이메일</div>
+							<div class="visit">이메일</div>
+							<div class="visit">가입날짜</div>
+							<div class="visit">권한</div>
 						</div>
-											
+						
 						 <c:choose>
 	                         <c:when test="${ requestScope.memberlist != null}" >
 	                            <c:forEach var="m" items="${ requestScope.memberlist }">
 									<div class="table-row">
 										<div class="serial">${ m.id }</div>
-										<div class="country">${ m.name }</div>
+										<div class="visit">${ m.name }</div>
 										<div class="visit">${ m.phone }</div>
-										<div class="percentage">${ m.email }</div>
+										<div class="visit">${ m.email }</div>
+										<div class="visit">${ m.regDate }</div>
+										<div class="visit">
+											<c:choose>
+												<c:when test="${ m.rank eq 'admin' }">관리자</c:when>
+												<c:otherwise>일반</c:otherwise>
+											</c:choose>
+										</div>
 									</div>
 								</c:forEach>
 	                         </c:when>

@@ -5993,7 +5993,7 @@ h6 {
 
 /* line 353, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_elements.scss */
 .progress-table-wrap {
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
 }
 
 /* line 357, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_elements.scss */
