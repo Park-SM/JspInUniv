@@ -81,7 +81,7 @@
 		           </div>
 		           <div class="single_product_menu d-flex">
 		               <div class="input-group">
-		                   <input type="text" id="search" name="search" value="${ requestScope.search }" class="form-control" placeholder="search">
+		                   <input type="text" id="search" name="search" value="${ requestScope.search }" class="form-control" placeholder="id search">
 		                    <div class="input-group-prepend">
 		                        <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
 		                    </div>
@@ -100,7 +100,7 @@
 					<div class="progress-table">
 						<div class="table-head">
 							<div class="serial">아이디</div>
-							<div class="visit">회사명</div>
+							<div class="visit">이름</div>
 							<div class="visit">전화번호</div>
 							<div class="visit">이메일</div>
 							<div class="visit">가입날짜</div>
@@ -118,7 +118,7 @@
 										<div class="visit">${ m.regDate }</div>
 										<div class="visit">
 											<c:choose>
-												<c:when test="${ m.rank eq 'admin' }">관리자</c:when>
+												<c:when test="${ m.rank == 1 }">관리자</c:when>
 												<c:otherwise>일반</c:otherwise>
 											</c:choose>
 										</div>

@@ -34,6 +34,10 @@
     	function sortBy() {
     		document.sortForm.submit();
     	}
+    	
+    	function gotoPage() {
+    		document.sortForm.submit();
+    	}
     </script>
 </head>
 
@@ -63,42 +67,41 @@
     <!--================Category Product Area =================-->
     <section class="cat_product_area section_padding">
         <div class="container">
+          <form name="sortForm" method="post" action="product-list.do">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
-                          <form name="sortForm" method="post" action="product-list.do">
-                            <div class="product_top_bar d-flex justify-content-between align-items-center">
-                                <div class="single_product_menu">
-                                    <p><span>10000 </span> Prodict Found</p>
-                                </div>
-                                <div class="single_product_menu d-flex">
-                                    <h5>short by : </h5>
-                                    <select id="sortMethod" name="sortMethod" onchange="sortBy();">
-                                    <%
-                                    	String[] items = {"name", "price"};
-                                    	String sortMethod = request.getParameter("sortMethod");
-                                    	String selected = "";
-                                    	for (int i = 1; i <= 2; i++) {
-                                    		if (i == 1) selected = "data-display='Select'";
-                                    		else selected = "";
-                                    %>
-                                        <option value="<%=i %>" <%=selected %>><%=items[i - 1] %></option>
-                                    <%
-                                    	}
-                                    %>
-                                    </select>
-                                </div>
-                                <div class="single_product_menu d-flex">
-                                    <div class="input-group">
-                                        <input type="text" id="search" name="search" value="${ requestScope.search }" class="form-control" placeholder="search">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                          </form>
+                           <div class="product_top_bar d-flex justify-content-between align-items-center">
+                               <div class="single_product_menu">
+                                   <p><span>10000 </span> Prodict Found</p>
+                               </div>
+                               <div class="single_product_menu d-flex">
+                                   <h5>short by : </h5>
+                                   <select id="sortMethod" name="sortMethod" onchange="sortBy();">
+                                   <%
+                                   	String[] items = {"name", "price"};
+                                   	String sortMethod = request.getParameter("sortMethod");
+                                   	String selected = "";
+                                   	for (int i = 1; i <= 2; i++) {
+                                   		if (i == 1) selected = "data-display='Select'";
+                                   		else selected = "";
+                                   %>
+                                       <option value="<%=i %>" <%=selected %>><%=items[i - 1] %></option>
+                                   <%
+                                   	}
+                                   %>
+                                   </select>
+                               </div>
+                               <div class="single_product_menu d-flex">
+                                   <div class="input-group">
+                                       <input type="text" id="search" name="search" value="${ requestScope.search }" class="form-control" placeholder="search">
+                                       <div class="input-group-prepend">
+                                           <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
                         </div>
                     </div>
                     <div class="row align-items-center latest_product_inner">
@@ -122,12 +125,18 @@
                                                 <i class="ti-angle-double-left"></i>
                                             </a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                        <%
+                                        	int currentPage = (Integer) request.getAttribute("page");
+                                        	int blockCount = (Integer) request.getAttribute("blockCount");
+                                        	String flag = "";
+                                        	for (int i = 0; i < blockCount; i++) {
+                                        		if (currentPage == i+1) flag = "style='color:red;'";
+                                        		else flag = "";
+                                        %>
+                                        		<li class="page-item"><a class="page-link" href="product-list.do?page=<%=i %>" <%=flag %>><%=i+1 %></a></li>
+                                        <%
+                                        	}
+                                        %>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <i class="ti-angle-double-right"></i>
@@ -140,6 +149,7 @@
                     </div>
                 </div>
             </div>
+          </form>
         </div>
     </section>
     <!--================End Category Product Area =================-->

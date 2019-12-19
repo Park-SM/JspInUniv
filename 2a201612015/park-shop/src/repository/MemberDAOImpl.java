@@ -22,7 +22,7 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 			conn = this.getConnection();
 			stmt = conn.createStatement();
 			// Write query.
-			String query = "insert into ma_201612015 values ('"
+			String query = "insert into ma_201612015 values (m_pid_seq.NEXTVAL, '"
 					+ m.getId() + "', '"
 					+ m.getPw() + "', '"
 					+ m.getName() + "', '"
@@ -30,7 +30,7 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 					+ m.getEmail() + "', '"
 					+ m.getCountry() + "', '"
 					+ m.getRegDate() + "', '"
-					+ m.getRank() + "')";
+					+ "')";
 
 			// Execute insert query.
 			ret = stmt.executeUpdate(query);
@@ -59,7 +59,7 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 			pstmt.setString(2, m.getPhone());
 			pstmt.setString(3, m.getEmail());
 			pstmt.setString(4, m.getCountry());
-			pstmt.setString(5, m.getRank());
+			pstmt.setInt(5, m.getRank());
 			pstmt.setString(6, m.getId());
 			pstmt.setString(7, m.getPw());
 
@@ -96,8 +96,8 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				model = new Member(rs.getString("id"), rs.getString("pw"),
-						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getString("rank"));
+				model = new Member(rs.getInt("pid"), rs.getString("id"), rs.getString("pw"),
+						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getInt("rank"));
 				return model;
 			}
 			
@@ -114,7 +114,7 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 		
 		try {
 			if (search.equals("")) search = "";
-			else search = "where name like '%" + search + "%'";
+			else search = "where id like '%" + search + "%'";
 			
 			System.out.println("Search: " + search);
 			String sql;
@@ -131,8 +131,8 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 			
 			modelList = new ArrayList<Member>();
 			while (rs.next()) {
-				modelList.add(new Member(rs.getString("id"), rs.getString("pw"),
-						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getString("rank")));
+				modelList.add(new Member(rs.getInt("pid"), rs.getString("id"), rs.getString("pw"),
+						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getInt("rank")));
 			}
 			
 		} catch(SQLException e) {
@@ -193,8 +193,8 @@ public class MemberDAOImpl extends DAOImpl implements MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				model = new Member(rs.getString("id"), rs.getString("pw"),
-						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getString("rank"));
+				model = new Member(rs.getInt("pid"), rs.getString("id"), rs.getString("pw"),
+						rs.getString("name"), rs.getString("phone"), rs.getString("email"), rs.getString("country"), rs.getString("regdate"), rs.getInt("rank"));
 				return true;
 			}
 			

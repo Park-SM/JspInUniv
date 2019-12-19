@@ -59,10 +59,10 @@
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Member Registration</h2>
+              <h2>Member Information</h2>
               <p>Home <span>-</span> Shop Single</p>
             </div>
           </div>
@@ -76,23 +76,16 @@
   <section class="checkout_area padding_top">
     <div class="container">
      
-      <div class="cupon_area">
-      	<h2>Apply Coupon</h2>
-        <div class="check_title">
-          <h2>Have a coupon?&nbsp<a href="#">Click here to enter your code</a></h2>
-        </div>
-        <input type="text" placeholder="Enter coupon code" />
-        <a class="tp_btn" href="#">Apply Coupon</a>
-      </div>
       <div class="billing_details">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-12">
           	<h2>Member Information</h2>
 	          <div class="check_title">
 		          <h2>Please enter your information</h2>
 	          </div>	
 	       	<br>
             <form class="row contact_form" id="regForm" name="regForm" action="member-edit.do" method="post" novalidate="novalidate">
+              <input type="hidden" name="pid" value="${ requestScope.model_info.pid }">
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="first" name="id" value="${requestScope.model_info.id}" placeholder="ID" readonly />
               </div>
@@ -146,81 +139,7 @@
           	<input type="text" id="id" name="id" style="display:none;" value="${requestScope.model_info.id}" /> 
           </form>
           
-          <div class="col-lg-4">
-            <div class="order_box">
-              <h2>Your Order</h2>
-              <ul class="list">
-                <li>
-                  <a href="#">Product
-                    <span>Total</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Blackberry
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Tomatoes
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Brocoli
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-              </ul>
-              <ul class="list list_2">
-                <li>
-                  <a href="#">Subtotal
-                    <span>$2160.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Total
-                    <span>$2210.00</span>
-                  </a>
-                </li>
-              </ul>
-              <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Check payments</label>
-                  <div class="check"></div>
-                </div>
-                <p>
-                  Please send a check to Store Name, Store Street, Store Town,
-                  Store State / County, Store Postcode.
-                </p>
-              </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">Paypal </label>
-                  <img src="img/product/single-product/card.jpg" alt="" />
-                  <div class="check"></div>
-                </div>
-                <p>
-                  Please send a check to Store Name, Store Street, Store Town,
-                  Store State / County, Store Postcode.
-                </p>
-              </div>
-              <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector" />
-                <label for="f-option4">I’ve read and accept the </label>
-                <a href="#">terms & conditions*</a>
-              </div>
-              <a class="btn_3" href="#">Proceed to Paypal</a>
-            </div>
+          
           </div>
         </div>
       </div>

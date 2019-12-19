@@ -1,6 +1,7 @@
 package domain;
 
 public class Member {
+	private int pid;
 	private String id;
 	private String pw;
 	private String name;
@@ -8,9 +9,10 @@ public class Member {
 	private String email;
 	private String county;
 	private String regDate;
-	private String rank;
+	private int rank;
 	
-	public Member(String id, String pw, String name, String phone, String email, String country, String regDate, String rank) {
+	public Member(int pid, String id, String pw, String name, String phone, String email, String country, String regDate, int rank) {
+		this.pid = pid;
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -18,12 +20,17 @@ public class Member {
 		this.email = email;
 		this.county = country;
 		this.regDate = regDate;
-		this.rank = "";
-		
-		if(rank != null && rank.equals("0")) this.rank = "general";
-		else this.rank = "admin";
+		this.rank = rank;
 	}
 	
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -69,11 +76,11 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
 
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 	

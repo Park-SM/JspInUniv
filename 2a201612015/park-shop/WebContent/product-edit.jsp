@@ -61,14 +61,20 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2">제고 수</label>
+						<label class="col-sm-2">재고 수</label>
 						<div class="col-sm-3">
 							<input type="text" id="unitsInStock" name="unitsInStock" class="form-control" value="<%=product.getUnitsInStock() %>">
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-sm-2">상품 등록일</label>
+						<div class="col-sm-4">
+							<input type="date" id="regdate" name="regdate" class="form-control" value="<%=product.getRegDate() %>">
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-sm-2">상태</label>
-						<div class="col-sm-5">
+						<div class="col-sm-6">
 							<%
 								String condition = product.getCondition();
 								if (condition.equals("New")) {
@@ -89,6 +95,12 @@
 									<input type="radio" name="condition" value="Old" > 중고 제품 
 									<input type="radio" name="condition" value="Refurbished" checked> 재생 제품
 							<%
+								} else {
+							%>
+									<input type="radio" name="condition" value="New" > 신규 제품 
+									<input type="radio" name="condition" value="Old" > 중고 제품 
+									<input type="radio" name="condition" value="Refurbished"> 재생 제품
+							<%	
 								}
 							%>
 						</div>

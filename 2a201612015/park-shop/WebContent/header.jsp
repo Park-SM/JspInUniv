@@ -15,7 +15,9 @@
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="member-list.do">Members</a>
+                                	<c:if test="${sessionScope.login_rank == 'admin' }">
+                                        	<a class="nav-link" href="member-list.do">Members</a>
+                                    </c:if>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_1"
@@ -42,7 +44,6 @@
 				                            	<a class="dropdown-item" href="product-register.jsp">product register</a>
 				                            </c:when>
 				                        </c:choose>
-                                        <a class="dropdown-item" href="member-list.do">member-list</a>
                                         <a class="dropdown-item" href="checkout.jsp">product checkout</a>
                                         <a class="dropdown-item" href="cart.jsp">shopping cart</a>
                                         <a class="dropdown-item" href="confirmation.jsp">confirmation</a>
@@ -73,7 +74,7 @@
 	                            	<a href="login.jsp"><i class="ti-heart-broken"></i></a>
 	                            </c:when>
 	                            <c:otherwise>
-	                            	<a href='confirm-pw.jsp?id=${ sessionScope.login_rank }'><i class="ti-user"></i></button>
+	                            	<a href='confirm-pw.jsp?id=${ sessionScope.login_id }'><i class="ti-user"></i></button>
 	                            	<a href="logout.jsp"><i class="ti-arrow-right"></i></a>
 	                            </c:otherwise>
                             </c:choose>

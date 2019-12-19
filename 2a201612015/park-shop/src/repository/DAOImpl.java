@@ -17,8 +17,8 @@ public class DAOImpl implements DAO {
 
 		try {
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			//String user = "a201612015";
-			String user = "parksm";
+			String user = "a201612015";
+			//String user = "parksm";
 			String password = "park#godqhr1";
 
 			// Loading driver

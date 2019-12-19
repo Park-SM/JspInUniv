@@ -2,8 +2,10 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -106,6 +108,10 @@ public class ProductController extends HttpServlet {
 			newProduct.setCondition(request.getParameter("condition"));
 			newProduct.setQuantity(1);
 			newProduct.setFilename((String) request.getAttribute("productImage"));
+			
+			Date now = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			newProduct.setRegDate(format.format(now));
 	
 			if (dao.create(newProduct) > 0)
 				response.sendRedirect("product-list.do");
@@ -130,7 +136,7 @@ public class ProductController extends HttpServlet {
 				return;
 			}
 
-			ArrayList<Product> goodsList = dao.selectAll("0", "");
+			ArrayList<Product> goodsList = dao.selectAll("0", "", -1, -1);
 			Product goods = new Product();
 			for (int i = 0; i < goodsList.size(); i++) {
 				goods = goodsList.get(i);
@@ -208,6 +214,20 @@ public class ProductController extends HttpServlet {
 			
 /////////// product-list.do
 		} else if (urn.equals("product-list.do")) {
+			
+			int rowCount = 4;
+			int totalCount = dao.selectAllCount();
+			
+			int totalBlockCount = totalCount / rowCount;
+			if (totalCount % rowCount != 0) totalBlockCount++;
+			
+			
+			int startCount = 0;
+			if (request.getParameter("page") == null) startCount = 0;
+			else startCount = Integer.parseInt(request.getParameter("page")) * rowCount;
+			
+			int endCount = startCount + rowCount;
+			
 			String sortMethod = "0";
 			if (request.getParameter("sortMethod") != null) {
 				sortMethod = request.getParameter("sortMethod");
@@ -218,13 +238,21 @@ public class ProductController extends HttpServlet {
 			}
 			
 			ArrayList<Product> modelList = new ArrayList<Product>();
-			System.out.println("asdassaasdasd: " + search);
-			if ((modelList = dao.selectAll(sortMethod, search)) != null) {
+
+			if ((modelList = dao.selectAll(sortMethod, search, startCount, endCount)) != null) {
 				request.setAttribute("productList", modelList);
 				request.setAttribute("sortMethod", sortMethod);
 				request.setAttribute("search", search);
+				request.setAttribute("page", endCount / rowCount);
+				request.setAttribute("blockCount", totalBlockCount);
 			}
-			request.getRequestDispatcher("product-list-view.jsp").forward(request, response);
+			
+			System.out.println("search: " + search + "|| modelList.size : " + modelList.size() + "|| start: " + startCount + "|| end:" + endCount);
+			if (!search.equals("") && modelList.size() == 1) {
+				request.setAttribute("product", modelList.get(0));
+				request.getRequestDispatcher("product-detail-view.jsp").forward(request, response);
+			} else
+				request.getRequestDispatcher("product-list-view.jsp").forward(request, response);
 		
 /////////// product-remove.do	
 		} else if (urn.equals("product-remove.do")) {
@@ -291,6 +319,7 @@ public class ProductController extends HttpServlet {
 			product.setCondition(request.getParameter("condition"));
 			product.setFilename(oldFilename);
 			product.setQuantity(1);
+			product.setRegDate(request.getParameter("regdate"));
 			
 			dao.update(product);
 			

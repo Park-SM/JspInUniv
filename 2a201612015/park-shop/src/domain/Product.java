@@ -17,6 +17,7 @@ public class Product implements Serializable {
 	private String condition;
 	private int quantity;
 	private String filename;
+	private String regDate;
 	
 	/*
 	 * Integer I = new Integer("123");	// This is Wrapper class.
@@ -29,7 +30,7 @@ public class Product implements Serializable {
 	}
 
 	public Product(int pid, String productId, String pname, int unitPrice, String description, String manufacturer, String category, long unitsInStock
-			, String condition, int quantity, String filename) {
+			, String condition, int quantity, String filename, String regDate) {
 		this.pid = pid;
 		this.productId = productId;
 		this.pname = pname;
@@ -41,6 +42,7 @@ public class Product implements Serializable {
 		this.condition = condition;
 		this.quantity = quantity;
 		this.filename = filename;
+		this.regDate = regDate.substring(0, 10);
 	}
 	
 	public Product(String productId, String pname, Integer unitPrice) {
@@ -138,4 +140,14 @@ public class Product implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	
+	
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="selectAll"/>
-		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
-		<item key="wholeword" value="false"/>
-		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="p_2016015"/>
+		<item key="casesensitive" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="false"/>
 		<list key="findhistory">
+			<item value="p_201612015"/>
+			<item value="asdassaasdasd"/>
 			<item value="selectAll"/>
 			<item value=".do"/>
 			<item value="Search Here"/>
@@ -21,19 +23,19 @@
 			<item value="owl-stage"/>
 			<item value="widht"/>
 			<item value="owl-item"/>
-			<item value="awesome"/>
-			<item value="&gt;"/>
 		</list>
 		<list key="replacehistory">
+			<item value="p_2016015"/>
+			<item value="p_20161215"/>
 			<item value="Product"/>
 			<item value=".jsp"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1111"/>
-		<item key="DIALOG_Y_ORIGIN" value="171"/>
 		<item key="DIALOG_WIDTH" value="288"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_X_ORIGIN" value="1086"/>
+		<item key="DIALOG_Y_ORIGIN" value="171"/>
 	</section>
 </section>
