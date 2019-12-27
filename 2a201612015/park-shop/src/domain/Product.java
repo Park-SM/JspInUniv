@@ -14,7 +14,7 @@ public class Product implements Serializable {
 	private String manufacturer;
 	private String category;
 	private long unitsInStock;
-	private String condition;
+	private String conditions;
 	private int quantity;
 	private String filename;
 	private String regDate;
@@ -39,7 +39,7 @@ public class Product implements Serializable {
 		this.manufacturer = manufacturer;
 		this.category = category;
 		this.unitsInStock = unitsInStock;
-		this.condition = condition;
+		this.conditions = condition;
 		this.quantity = quantity;
 		this.filename = filename;
 		this.regDate = regDate.substring(0, 10);
@@ -118,11 +118,11 @@ public class Product implements Serializable {
 	}
 
 	public String getCondition() {
-		return condition;
+		return conditions;
 	}
 
 	public void setCondition(String condition) {
-		this.condition = condition;
+		this.conditions = condition;
 	}
 	
 	public String getFilename() {

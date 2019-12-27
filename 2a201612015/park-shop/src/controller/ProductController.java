@@ -116,7 +116,7 @@ public class ProductController extends HttpServlet {
 			if (dao.create(newProduct) > 0)
 				response.sendRedirect("product-list.do");
 			else {
-				request.setAttribute("msg", "상품 등록 에러");
+				request.setAttribute("msg", "상품 등록 오류");
 				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
 			}
 		
@@ -131,12 +131,12 @@ public class ProductController extends HttpServlet {
 
 			Product product = dao.readList(id);
 			if (product == null) {
-				request.setAttribute("msg", "상품 추가 에러");
+				request.setAttribute("msg", "장바구니에 담기 오류");
 				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
 				return;
 			}
 
-			ArrayList<Product> goodsList = dao.selectAll("0", "", -1, -1);
+			ArrayList<Product> goodsList = dao.selectAll();
 			Product goods = new Product();
 			for (int i = 0; i < goodsList.size(); i++) {
 				goods = goodsList.get(i);
@@ -183,14 +183,14 @@ public class ProductController extends HttpServlet {
 
 			Product product = dao.readList(id);
 			if (product == null) {
-				request.setAttribute("msg", "상품 삭제 에러");
+				request.setAttribute("msg", "상품 등록 오류");
 				request.getRequestDispatcher("exception-print.jsp").forward(request, response);
 				return;
 			}
 
 			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
 			Product goodsQnt = new Product();
-			for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
+			for (int i = 0; i < cartList.size(); i++) { // �긽�뭹由ъ뒪�듃 �븯�굹�뵫 異쒕젰�븯湲�
 				goodsQnt = cartList.get(i);
 				if (goodsQnt.getProductId().equals(id)) {
 					cartList.remove(goodsQnt);
@@ -239,7 +239,7 @@ public class ProductController extends HttpServlet {
 			
 			ArrayList<Product> modelList = new ArrayList<Product>();
 
-			if ((modelList = dao.selectAll(sortMethod, search, startCount, endCount)) != null) {
+			if ((modelList = dao.selectAll()) != null) {
 				request.setAttribute("productList", modelList);
 				request.setAttribute("sortMethod", sortMethod);
 				request.setAttribute("search", search);

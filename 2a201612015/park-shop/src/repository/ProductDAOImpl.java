@@ -31,18 +31,17 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 			conn = this.getConnection();
 			stmt = conn.createStatement();
 			// Write query.
-			String query = "insert into p_2016015 values ( pid_seq.NEXTVAL, '" +
+			String query = "insert into Product values ('" +
 					p.getProductId() + "', '" +
 					p.getPname() + "', " +
 					p.getUnitPrice() + ", '" +
-					p.getManufacturer() + "', '" +
 					p.getDescription() + "', '" +
+					p.getManufacturer() + "', '" +
 					p.getCategory() + "', " +
 					p.getUnitsInStock() + ", '" +
-					p.getCondition() + "', " +
-					p.getQuantity() + ", '" +
-					p.getFilename() + "', '" +
-					p.getRegDate() + "')";
+					p.getCondition() + "', '" +
+					p.getFilename() + "', " +
+					p.getQuantity() + ")";
 
 			// Execute insert query.
 			ret = stmt.executeUpdate(query);
@@ -65,8 +64,8 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 			conn = this.getConnection();
 			stmt = conn.createStatement();
 			// Write query.
-			String query = "update p_2016015 set pname=?, unitPrice=?, description=?, manufacturer=?"
-					+ ", category=?, unitsInStock=?, condition=?, quantity=?, filename=?, regdate=? where pid=?";
+			String query = "update Product set pname=?, unitPrice=?, description=?, manufacturer=?"
+					+ ", category=?, unitsInStock=?, conditions=?, quantity=?, filename=? where productId=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, p.getPname());
 			pstmt.setInt(2, p.getUnitPrice());
@@ -77,8 +76,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 			pstmt.setString(7, p.getCondition());
 			pstmt.setInt(8, p.getQuantity());
 			pstmt.setString(9, p.getFilename());
-			pstmt.setString(10, p.getRegDate());
-			pstmt.setInt(11, p.getPid());
+			pstmt.setString(10, p.getProductId());
 
 			// Execute insert query.
 			ret = pstmt.executeUpdate();
@@ -104,7 +102,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 		
 		try {
 			//String sql = "select * from ma_201612015 where id='" + id + "'";
-			String sql = "select * from p_2016015 where productId=?";
+			String sql = "select * from Product where productId=?";
 			conn = this.getConnection();
 			
 			pstmt = conn.prepareStatement(sql);
@@ -113,19 +111,17 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				model = new Product(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getInt(4),
-						rs.getString(5),
-						rs.getString(6),
-						rs.getString(7),
-						rs.getLong(8),
-						rs.getString(9),
-						rs.getInt(10),
-						rs.getString(11),
-						rs.getString(12));
+				model = new Product();
+				model.setProductId(rs.getString(1));
+				model.setPname(rs.getString(2));
+				model.setUnitPrice(rs.getInt(3));
+				model.setDescription(rs.getString(4));
+				model.setManufacturer(rs.getString(5));
+				model.setCategory(rs.getString(6));
+				model.setUnitsInStock(rs.getInt(7));
+				model.setCondition(rs.getString(8));
+				model.setFilename(rs.getString(9));
+				model.setQuantity(rs.getInt(10));
 				
 				return model;
 			}
@@ -137,60 +133,36 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 		return null;
 	}
 	
-	public ArrayList<Product> selectAll(String sortMethod, String search, int start, int end) {
+	public ArrayList<Product> selectAll() {
 		
 		ArrayList<Product> modelList = null;
-		boolean whereFlag = false;
 		
 		try {
-			
-			if (!search.equals("")) {
-				search = " pname like '%" + search + "%' ";
-				whereFlag = true;
-			}
-			
-			String limit = "";
-			if (end >= 0) {
-				limit = " pid > " + start + " and pid <=" + end + " ";
-				whereFlag = true;
-			}
-			
-			String where = "";
-			if(whereFlag) where = " where ";
-			
-			String and = "";
-			if (!search.equals("") && end >= 0) and = "and";
-			
-			String sql;
-			if (sortMethod.equals("0")) 
-				sql = "select * from p_2016015 " + where + search + and + limit;
-			else if (sortMethod.equals("1"))
-				sql = "select * from p_2016015 " + where + search + and + limit + " order by pname";
-			else
-				sql = "select * from p_2016015 " + where + search + and + limit + " order by unitPrice";
+			String sql = "select * from Product order by pname";
 			
 			conn = this.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
+			
 			modelList = new ArrayList<Product>();
 			while (rs.next()) {
-				modelList.add(new Product(
-							rs.getInt(1),
-							rs.getString(2),
-							rs.getString(3),
-							rs.getInt(4),
-							rs.getString(5),
-							rs.getString(6),
-							rs.getString(7),
-							rs.getLong(8),
-							rs.getString(9),
-							rs.getInt(10),
-							rs.getString(11),
-							rs.getString(12)
-						));
-						
+				Product model = new Product();
+				
+				model.setProductId(rs.getString(1));
+				model.setPname(rs.getString(2));
+				model.setUnitPrice(rs.getInt(3));
+				model.setDescription(rs.getString(4));
+				model.setManufacturer(rs.getString(5));
+				model.setCategory(rs.getString(6));
+				model.setUnitsInStock(rs.getInt(7));
+				model.setCondition(rs.getString(8));
+				model.setFilename(rs.getString(9));
+				model.setQuantity(rs.getInt(10));
+				
+				modelList.add(model);
 			}
+			
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -200,12 +172,12 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 	}
 	
 	public int selectAllCount() {
-		return this.selectAll("0", "", 0, 5).size();
+		return this.selectAll().size();
 	}
 	
 	public void delete(String id) {
 		try {
-			String sql = "delete from p_2016015 where productId=?";
+			String sql = "delete from Product where productId=?";
 			conn = this.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

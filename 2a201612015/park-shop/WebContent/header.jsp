@@ -35,15 +35,8 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    	<c:if test="${sessionScope.login != 'success' }">
-                                        	<a class="dropdown-item" href="login.jsp"> login</a>
-                                        </c:if>
-                                        
-                                         <c:choose>
-				                            <c:when test="${ sessionScope.login_rank == 'admin' }" >
-				                            	<a class="dropdown-item" href="product-register.jsp">product register</a>
-				                            </c:when>
-				                        </c:choose>
+                                        <a class="dropdown-item" href="login.jsp"> login</a>
+				                        <a class="dropdown-item" href="product-register.jsp">product register</a>
                                         <a class="dropdown-item" href="checkout.jsp">product checkout</a>
                                         <a class="dropdown-item" href="cart.jsp">shopping cart</a>
                                         <a class="dropdown-item" href="confirmation.jsp">confirmation</a>

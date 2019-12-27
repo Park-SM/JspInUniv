@@ -3,6 +3,11 @@
 <%@ page import="domain.Product"%>
 <html>
 <head>
+<link rel="stylesheet" href="themes/subsub.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
 <title>상품 수정</title>
 </head>
@@ -64,12 +69,6 @@
 						<label class="col-sm-2">재고 수</label>
 						<div class="col-sm-3">
 							<input type="text" id="unitsInStock" name="unitsInStock" class="form-control" value="<%=product.getUnitsInStock() %>">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2">상품 등록일</label>
-						<div class="col-sm-4">
-							<input type="date" id="regdate" name="regdate" class="form-control" value="<%=product.getRegDate() %>">
 						</div>
 					</div>
 					<div class="form-group row">

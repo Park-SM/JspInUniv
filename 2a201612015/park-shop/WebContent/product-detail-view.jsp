@@ -3,6 +3,11 @@
 <%@ page import="domain.Product"%>
 <html>
 <head>
+<link rel="stylesheet" href="themes/subsub.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>상품 상세 정보</title>
@@ -29,17 +34,10 @@
 				<p><b>제조사</b> : <%=product.getManufacturer()%>
 				<p><b>분류</b> : <%=product.getCategory()%>
 				<p><b>재고 수</b> : <%=product.getUnitsInStock()%>
-				<p><b>상품 등록일</b> : <%=product.getRegDate()%>
 				<h4><%=product.getUnitPrice()%>원</h4>
 				<p><a href="cart-add.do?id=<%=product.getProductId() %>" onclick='return confirm("해당 상품을 추가하시겠습니까?");' class="btn btn-info"> 상품 주문 &raquo;</a>
-				<%
-					if (session.getAttribute("login_rank") != null && ((String)session.getAttribute("login_rank")).equals("admin")) {
-				%>
-					<a href="./product-edit.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 수정 &raquo;</a>
-						<a href="./product-remove.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 삭제 &raquo;</a>
-				<%
-					}
-				%>
+				<a href="./product-edit.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 수정 &raquo;</a>
+				<a href="./product-remove.do?id=<%=product.getProductId() %>" class="btn btn-secondary"> 상품 삭제 &raquo;</a>
 				<a href="./product-list.do" class="btn btn-secondary"> 상품 목록 &raquo;</a>
 			</div>
 		</div>
